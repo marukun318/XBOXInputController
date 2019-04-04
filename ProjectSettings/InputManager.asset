@@ -198,11 +198,43 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: Action0_Mac
+    descriptiveName: A Button
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 16
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: Action1
     descriptiveName: B Button
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick button 1
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Action1_Mac
+    descriptiveName: B Button
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 17
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -230,11 +262,43 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: Action2_Mac
+    descriptiveName: X Button
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 18
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: Action3
     descriptiveName: Y Button
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick button 3
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Action3_Mac
+    descriptiveName: Y Button
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 19
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -454,6 +518,22 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: LStickClick_Mac
+    descriptiveName: "LStick\u62BC\u3057\u8FBC\u307F"
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: enter
+    altNegativeButton: 
+    altPositiveButton: joystick button 11
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: RStickClick
     descriptiveName: "RStick\u62BC\u3057\u8FBC\u307F"
     descriptiveNegativeName: 
@@ -461,6 +541,22 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: joystick button 9
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: RStickClick_Mac
+    descriptiveName: "RStick\u62BC\u3057\u8FBC\u307F"
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: joystick button 12
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -486,6 +582,22 @@ InputManager:
     axis: 3
     joyNum: 0
   - serializedVersion: 3
+    m_Name: Horizontal2_Mac
+    descriptiveName: RStick
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: Vertical2
     descriptiveName: RStick
     descriptiveNegativeName: 
@@ -500,6 +612,22 @@ InputManager:
     invert: 0
     type: 2
     axis: 4
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Vertical2_Mac
+    descriptiveName: RStick
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 3
     joyNum: 0
   - serializedVersion: 3
     m_Name: DPADH
@@ -518,7 +646,103 @@ InputManager:
     axis: 5
     joyNum: 0
   - serializedVersion: 3
+    m_Name: DPADH_Linux
+    descriptiveName: DPADH
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 6
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: DPADL_Mac
+    descriptiveName: DPAD LEFT
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 7
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: DPADR_Mac
+    descriptiveName: DPAD RIGHT
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 8
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: DPADU_Mac
+    descriptiveName: DPAD UP
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 5
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: DPADD_Mac
+    descriptiveName: DPAD DOWN
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 6
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: DPADV
+    descriptiveName: DPADV
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 7
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: DPADV_Linux
     descriptiveName: DPADV
     descriptiveNegativeName: 
     negativeButton: 
@@ -566,6 +790,38 @@ InputManager:
     axis: 8
     joyNum: 0
   - serializedVersion: 3
+    m_Name: LeftTrigger_Mac
+    descriptiveName: Left Trigger
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 4
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: LeftTrigger_Linux
+    descriptiveName: Left Trigger
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 2
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: RightTrigger
     descriptiveName: Right Trigger
     descriptiveNegativeName: 
@@ -580,6 +836,38 @@ InputManager:
     invert: 0
     type: 2
     axis: 9
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: RightTrigger_Linux
+    descriptiveName: Right Trigger
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 5
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: RightTrigger_Mac
+    descriptiveName: Right Trigger
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.19
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 5
     joyNum: 0
   - serializedVersion: 3
     m_Name: Accept

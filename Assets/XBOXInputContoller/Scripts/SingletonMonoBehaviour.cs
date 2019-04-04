@@ -27,7 +27,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : SingletonMonoBe
 	protected void Awake()
 	{
 #if NET_2_0 || NET_2_0_SUBSET || NET_STANDARD_2_0
-#error .NET Versionを4.6以降にしてください。
+#error Set .NET Version to 4.6 or later.
 #else
         CheckInstance();
 #endif
