@@ -5,6 +5,8 @@ Logs/
 UnityGenerated/
 Library/
 UIElementsSchema/
+Plugins/
+Plugins.meta
 ProjectSettings/ProjectVersion.txt
 
 # Visual Studio / MonoDevelop generated
