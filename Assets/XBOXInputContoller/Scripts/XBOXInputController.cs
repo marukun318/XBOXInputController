@@ -89,15 +89,25 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     private const string INPUT_RSTICK_CLICK = "RStickClick";
 #endif
 
-    /// <summary>
+    private uint pad = 0;                  // pad入力
+    private uint pad_bak = 0;               // 以前のPad入力
+    private uint pad_trg = 0;               // トリガー
+
+    private bool isReady;           // Preparation for initialization complete
+
+    // 読み取り専用プロパティ
+    public bool IsReady { get { return this.isReady; } set { this.isReady = value; } }
+
+        /// <summary>
     /// Use this for initialization
     /// </summary>
-    private void Start()
+    private IEnumerator Start()
     {
         // シーン遷移されても消えないように
         DontDestroyOnLoad(this.gameObject);
 
-        StartCoroutine(InitializeManager());
+        yield return StartCoroutine(InitializeManager());
+        yield break;
     }
 
     /// <summary>
@@ -105,7 +115,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     /// </summary>
     private void OnDestroy()
     {
-//        Debug.Log("OnDestroy()");
+        isReady = false;
     }
 
     /// <summary>
@@ -118,9 +128,10 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
 
 #if WINDOWS_UWP
         // Gamepadを探す
-        if(Gamepad.Gamepads.Count > 0) {
+        if　(Gamepad.Gamepads.Count > 0) 
+        {
             Debug.Log("Gamepad found.");
-          //  controller = Gamepad.Gamepads.First();
+          　//  controller = Gamepad.Gamepads.First();
         } else
         {
             Debug.Log("Gamepad not found.");
@@ -128,6 +139,10 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         // ゲームパッド追加時イベント処理を追加
         Gamepad.GamepadAdded += Gamepad_GamepadAdded;
 #endif
+
+        isReady = true;
+        Debug.Log("isReady.");
+
         yield break;
     }
 
@@ -137,152 +152,9 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     /// <returns>入力状態Bit</returns>
     public uint Poll()
     {
-        uint pad = 0;
-
-        // Analog Stick
-        float vx = Input.GetAxis(INPUT_HORIZONTAL);
-        float vy = Input.GetAxis(INPUT_VERTICAL);
-
-        // Right Analog Stick
-        float rvx = Input.GetAxis(INPUT_HORIZONTAL_R);
-        float rvy = Input.GetAxis(INPUT_VERTICAL_R);
-
-        // DPad
-        float dvx = Input.GetAxis(INPUT_DPAD_H);
-        float dvy = Input.GetAxis(INPUT_DPAD_V);
-
-        // Left Trigger
-        float tl = Input.GetAxis(INPUT_TRIGGER_L);
-        float tr = Input.GetAxis(INPUT_TRIGGER_R);
-
-        // Analog Left チェック
-        if (vx < 0f)
-        {
-            Debug.Log("ANALOG_LEFT");
-            pad |= PAD_LEFT;
-        }
-        else if (vx > 0f)
-        {
-            Debug.Log("ANALOG_RIGHT");
-            pad |= PAD_RIGHT;
-        }
-        // 上下逆
-        if (vy > 0f)
-        {
-            Debug.Log("ANALOG_UP");
-            pad |= PAD_UP;
-        }
-        else if (vy < 0f)
-        {
-            Debug.Log("ANALOG_DOWN");
-            pad |= PAD_DOWN;
-        }
-
-        // Analog Right チェック
-        if (rvx < 0f)
-        {
-            Debug.Log("RIGHT_ANALOG_LEFT");
-        }
-        else if (rvx > 0f)
-        {
-            Debug.Log("RIGHT_ANALOG_RIGHT");
-        }
-        if (rvy < 0f)
-        {
-            Debug.Log("RIGHT_ANALOG_UP");
-        }
-        else if (rvy > 0f)
-        {
-            Debug.Log("RIGHT_ANALOG_DOWN");
-        }
-
-
-        // トリガー
-        Debug.Log("tl=" + tl + " tr=" + tr);
-
-
-        // DPADチェック
-        if (dvx < 0f)
-        {
-            pad |= PAD_LEFT;
-        }
-        else if (dvx > 0f)
-        {
-            pad |= PAD_RIGHT;
-        }
-        // 上下逆
-        if (dvy > 0f)
-        {
-            pad |= PAD_UP;
-        }
-        else if (dvy < 0f)
-        {
-            pad |= PAD_DOWN;
-        }
-
-        // ボタンをチェック
-        if (Input.GetButton(INPUT_ACTION0))
-        {
-            Debug.Log("A");
-            pad |= PAD_BUTTON_A;
-        }
-        if (Input.GetButton(INPUT_ACTION1))
-        {
-            Debug.Log("B");
-            pad |= PAD_BUTTON_B;
-        }
-        if (Input.GetButton(INPUT_ACTION2))
-        {
-            Debug.Log("X");
-            pad |= PAD_BUTTON_X;
-        }
-        if (Input.GetButton(INPUT_ACTION3))
-        {
-            Debug.Log("Y");
-            pad |= PAD_BUTTON_Y;
-        }
-        if (Input.GetButton(INPUT_LB))
-        {
-            Debug.Log("LB");
-            pad |= PAD_BUTTON_LB;
-        }
-        if (Input.GetButton(INPUT_RB))
-        {
-            Debug.Log("RB");
-            pad |= PAD_BUTTON_RB;
-        }
-        if (Input.GetButton(INPUT_LSTICK_CLICK))
-        {
-            Debug.Log("LSTICK_CLICK");
-        }
-        if (Input.GetButton(INPUT_RSTICK_CLICK))
-        {
-            Debug.Log("RSTICK_CLICK");
-        }
-        // Start
-        if (Input.GetButton(INPUT_MENU))
-        {
-            Debug.Log("MENU");
-            pad |= PAD_BUTTON_MENU;
-        }
-        // Back
-        if (Input.GetButton(INPUT_VIEW))
-        {
-            Debug.Log("VIEW");
-            pad |= PAD_BUTTON_VIEW;
-        }
-
-
-        return pad;
-    }
-
-    /// <summary>
-    /// 画面更新
-    /// </summary>
-    private void Update()
-    {
-        uint pad = 0;
-
+        ///////////////////////////////////////////////////////////////////
+        // Test Code begin
+        ///////////////////////////////////////////////////////////////////
         // 接続されているコントローラの名前を調べる
         var controllerNames = Input.GetJoystickNames();
 
@@ -319,6 +191,9 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
 
             }
         }
+        ///////////////////////////////////////////////////////////////////
+        // Test Code end
+        ///////////////////////////////////////////////////////////////////
 
         // Analog Stick
         float vx = Input.GetAxis(INPUT_HORIZONTAL);
@@ -334,9 +209,10 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
 
         // Left Trigger
         float tl = Input.GetAxis(INPUT_TRIGGER_L);
+        // Right Trigger
         float tr = Input.GetAxis(INPUT_TRIGGER_R);
 
-        // Analog Left チェック
+        // Analog Left check
         if (vx < 0f)
         {
             Debug.Log("ANALOG_LEFT");
@@ -347,7 +223,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
             Debug.Log("ANALOG_RIGHT");
             pad |= PAD_RIGHT;
         }
-        // 上下逆
+        // Vertical reverse
         if (vy > 0f)
         {
             Debug.Log("ANALOG_UP");
@@ -359,7 +235,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
             pad |= PAD_DOWN;
         }
 
-        // Analog Right チェック
+        // Analog Right check
         if (rvx < 0f)
         {
             Debug.Log("RIGHT_ANALOG_LEFT");
@@ -378,34 +254,30 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         }
 
 
-        // トリガー
+        // Trigger check
         Debug.Log("tl=" + tl + " tr=" + tr);
 
 
-        // DPADチェック
+        // DPAD check
         if (dvx < 0f)
         {
-            Debug.Log("DPAD_LEFT");
             pad |= PAD_LEFT;
         }
         else if (dvx > 0f)
         {
-            Debug.Log("DPAD_RIGHT");
             pad |= PAD_RIGHT;
         }
         // 上下逆
         if (dvy > 0f)
         {
-            Debug.Log("DPAD_UP");
             pad |= PAD_UP;
         }
         else if (dvy < 0f)
         {
-            Debug.Log("DPAD_DOWN");
             pad |= PAD_DOWN;
         }
 
-        // ボタンをチェック
+        // Buttons check
         if (Input.GetButton(INPUT_ACTION0))
         {
             Debug.Log("A");
@@ -457,6 +329,21 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
             pad |= PAD_BUTTON_VIEW;
         }
 
+        // ボタンが押された一瞬の状態を記録
+        uint tmppad = pad;
+        pad_trg = ~pad_bak & tmppad;
+        pad_bak = tmppad;
+
+        return pad;
+    }
+
+    /// <summary>
+    /// ボタンが押された一瞬の状態を得る
+    /// </summary>
+    /// <returns>ボタンが押された一瞬の状態Bit</returns>
+    public uint Trigger()
+    {
+        return pad_trg;
     }
 
 #if WINDOWS_UWP
