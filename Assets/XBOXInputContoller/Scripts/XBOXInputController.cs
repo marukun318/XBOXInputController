@@ -25,7 +25,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     public static readonly uint PAD_BUTTON_MENU = 0x10000000;
     public static readonly uint PAD_BUTTON_VIEW = 0x20000000;
 
-    //    private const float PAD_DEAD = 0.2f;
+    private static readonly float PAD_DEAD = 0.2f;
 
     // Common
     private const string INPUT_HORIZONTAL = "Horizontal";
@@ -89,7 +89,6 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     private const string INPUT_RSTICK_CLICK = "RStickClick";
 #endif
 
-    private uint pad = 0;                  // pad入力
     private uint pad_bak = 0;               // 以前のPad入力
     private uint pad_trg = 0;               // トリガー
 
@@ -103,8 +102,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     /// </summary>
     private IEnumerator Start()
     {
-        // シーン遷移されても消えないように
-        DontDestroyOnLoad(this.gameObject);
+        //        DontDestroyOnLoad(this.gameObject);       // シーン遷移されても消えないように
 
         yield return StartCoroutine(InitializeManager());
         yield break;
@@ -152,6 +150,8 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     /// <returns>入力状態Bit</returns>
     public uint Poll()
     {
+        uint pad = 0;
+
         ///////////////////////////////////////////////////////////////////
         // Test Code begin
         ///////////////////////////////////////////////////////////////////
@@ -169,10 +169,10 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
             if (controllerNames[0] == "")
             {
                 // ゲームコントローラは接続されていない
-                Debug.Log(controllerNames[0]);
+//                Debug.Log(controllerNames[0]);
             }
-            Debug.Log(controllerNames[0]);
-
+//            Debug.Log(controllerNames[0]);
+/*
             if (controllerNames[0].Equals("Controller (XBOX 360 For Windows)"))
             {
                 Debug.Log("***XBOX360***");
@@ -190,6 +190,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
                 Debug.Log("***PlayStation1***");
 
             }
+ */
         }
         ///////////////////////////////////////////////////////////////////
         // Test Code end
@@ -198,14 +199,41 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         // Analog Stick
         float vx = Input.GetAxis(INPUT_HORIZONTAL);
         float vy = Input.GetAxis(INPUT_VERTICAL);
+        // Dead Zone
+        if (Mathf.Abs(vx) < PAD_DEAD)
+        {
+            vx = 0;
+        }
+        if (Mathf.Abs(vy) < PAD_DEAD)
+        {
+            vy = 0;
+        }
 
         // Right Analog Stick
         float rvx = Input.GetAxis(INPUT_HORIZONTAL_R);
         float rvy = Input.GetAxis(INPUT_VERTICAL_R);
+        // Dead Zone
+        if (Mathf.Abs(rvx) < PAD_DEAD)
+        {
+            rvx = 0;
+        }
+        if (Mathf.Abs(rvy) < PAD_DEAD)
+        {
+            rvy = 0;
+        }
 
         // DPad
         float dvx = Input.GetAxis(INPUT_DPAD_H);
         float dvy = Input.GetAxis(INPUT_DPAD_V);
+        // Dead Zone
+        if (Mathf.Abs(dvx) < PAD_DEAD)
+        {
+            dvx = 0;
+        }
+        if (Mathf.Abs(dvy) < PAD_DEAD)
+        {
+            dvy = 0;
+        }
 
         // Left Trigger
         float tl = Input.GetAxis(INPUT_TRIGGER_L);
@@ -215,23 +243,23 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         // Analog Left check
         if (vx < 0f)
         {
-            Debug.Log("ANALOG_LEFT");
+//            Debug.Log("ANALOG_LEFT");
             pad |= PAD_LEFT;
         }
         else if (vx > 0f)
         {
-            Debug.Log("ANALOG_RIGHT");
+//            Debug.Log("ANALOG_RIGHT");
             pad |= PAD_RIGHT;
         }
         // Vertical reverse
         if (vy > 0f)
         {
-            Debug.Log("ANALOG_UP");
+//            Debug.Log("ANALOG_UP");
             pad |= PAD_UP;
         }
         else if (vy < 0f)
         {
-            Debug.Log("ANALOG_DOWN");
+//            Debug.Log("ANALOG_DOWN");
             pad |= PAD_DOWN;
         }
 
@@ -255,8 +283,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
 
 
         // Trigger check
-        Debug.Log("tl=" + tl + " tr=" + tr);
-
+//        Debug.Log("tl=" + tl + " tr=" + tr);
 
         // DPAD check
         if (dvx < 0f)
@@ -267,6 +294,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         {
             pad |= PAD_RIGHT;
         }
+
         // 上下逆
         if (dvy > 0f)
         {
@@ -280,32 +308,32 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         // Buttons check
         if (Input.GetButton(INPUT_ACTION0))
         {
-            Debug.Log("A");
+//            Debug.Log("A");
             pad |= PAD_BUTTON_A;
         }
         if (Input.GetButton(INPUT_ACTION1))
         {
-            Debug.Log("B");
+//            Debug.Log("B");
             pad |= PAD_BUTTON_B;
         }
         if (Input.GetButton(INPUT_ACTION2))
         {
-            Debug.Log("X");
+//            Debug.Log("X");
             pad |= PAD_BUTTON_X;
         }
         if (Input.GetButton(INPUT_ACTION3))
         {
-            Debug.Log("Y");
+//            Debug.Log("Y");
             pad |= PAD_BUTTON_Y;
         }
         if (Input.GetButton(INPUT_LB))
         {
-            Debug.Log("LB");
+//            Debug.Log("LB");
             pad |= PAD_BUTTON_LB;
         }
         if (Input.GetButton(INPUT_RB))
         {
-            Debug.Log("RB");
+//            Debug.Log("RB");
             pad |= PAD_BUTTON_RB;
         }
         if (Input.GetButton(INPUT_LSTICK_CLICK))
@@ -319,13 +347,13 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         // Start
         if (Input.GetButton(INPUT_MENU))
         {
-            Debug.Log("MENU");
+//            Debug.Log("MENU");
             pad |= PAD_BUTTON_MENU;
         }
         // Back
         if (Input.GetButton(INPUT_VIEW))
         {
-            Debug.Log("VIEW");
+//            Debug.Log("VIEW");
             pad |= PAD_BUTTON_VIEW;
         }
 

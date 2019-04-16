@@ -12,6 +12,13 @@ To build this project, Please use Unity 2018.3.x later.
 
 ---
 
+## Update (2019/04/16)
+
+Fixed a bug in XBOXInputController.  
+The concrete usage example was described in TestScript.cs  
+
+---
+
 ## First Release (2019/04/04)
 
 This project is to make XBOX 360 / XBOX One controller usable in common with Windows, OSX and Linux.  
