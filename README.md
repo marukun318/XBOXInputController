@@ -8,7 +8,13 @@ XBOXInputController code by Marukun.
 Specifically, please visit here.  
 Marukun: [https://twitter.com/marukun/](https://twitter.com/marukun/)
 
-To build this project, Please use Unity 2018.3.x later.
+To build this project, Please use Unity 2018.3.x or later.
+
+---
+
+## Update (2019/04/21)
+
+Add some properties in XBOXInputController.  
 
 ---
 

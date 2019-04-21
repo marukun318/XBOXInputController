@@ -2,7 +2,6 @@
 // http://creativecommons.org/publicdomain/zero/1.0/deed.ja
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
@@ -25,7 +24,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     public static readonly uint PAD_BUTTON_MENU = 0x10000000;
     public static readonly uint PAD_BUTTON_VIEW = 0x20000000;
 
-    private static readonly float PAD_DEAD = 0.2f;
+    private const float PAD_DEAD = 0.2f;
 
     // Common
     private const string INPUT_HORIZONTAL = "Horizontal";
@@ -92,28 +91,32 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     private uint pad_bak = 0;               // 以前のPad入力
     private uint pad_trg = 0;               // トリガー
 
-    private bool isReady;           // Preparation for initialization complete
+    /// <summary>
+    /// Property
+    /// </summary>
+    private bool  isReady;
+    private float triggerL;
+    private float triggerR;
+    private float analogL_H;
+    private float analogL_V;
+    private float analogR_H;
+    private float analogR_V;
 
-    // 読み取り専用プロパティ
-    public bool IsReady { get { return this.isReady; } set { this.isReady = value; } }
+    public float TriggerL { get => triggerL; }
+    public float TriggerR { get => triggerR; }
+    public float AnalogL_H { get => analogL_H; }
+    public float AnalogL_V { get => analogL_V; }
+    public float AnalogR_H { get => analogR_H; }
+    public float AnalogR_V { get => analogR_V; }
+    public bool IsReady { get => isReady; }
 
-        /// <summary>
+    /// <summary>
     /// Use this for initialization
     /// </summary>
     private IEnumerator Start()
     {
-        //        DontDestroyOnLoad(this.gameObject);       // シーン遷移されても消えないように
-
         yield return StartCoroutine(InitializeManager());
         yield break;
-    }
-
-    /// <summary>
-    /// Destroyされたとき
-    /// </summary>
-    private void OnDestroy()
-    {
-        isReady = false;
     }
 
     /// <summary>
@@ -208,6 +211,8 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         {
             vy = 0;
         }
+        analogL_H = vx;
+        analogL_V = vy;
 
         // Right Analog Stick
         float rvx = Input.GetAxis(INPUT_HORIZONTAL_R);
@@ -221,6 +226,8 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         {
             rvy = 0;
         }
+        analogR_H = rvx;
+        analogR_V = rvy;
 
         // DPad
         float dvx = Input.GetAxis(INPUT_DPAD_H);
@@ -236,9 +243,9 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         }
 
         // Left Trigger
-        float tl = Input.GetAxis(INPUT_TRIGGER_L);
+        triggerL = Input.GetAxis(INPUT_TRIGGER_L);
         // Right Trigger
-        float tr = Input.GetAxis(INPUT_TRIGGER_R);
+        triggerR = Input.GetAxis(INPUT_TRIGGER_R);
 
         // Analog Left check
         if (vx < 0f)
@@ -283,7 +290,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
 
 
         // Trigger check
-//        Debug.Log("tl=" + tl + " tr=" + tr);
+//        Debug.Log("tl=" + triggerL + " tr=" + triggerR);
 
         // DPAD check
         if (dvx < 0f)
@@ -374,6 +381,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         return pad_trg;
     }
 
+
 #if WINDOWS_UWP
     /// <summary>
     // ゲームパッド追加時のイベント処理
@@ -384,5 +392,4 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         Debug.Log("Gamepad added");
     }
 #endif
-
 }
