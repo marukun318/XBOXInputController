@@ -109,6 +109,11 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     public float AnalogR_H { get => analogR_H; }
     public float AnalogR_V { get => analogR_V; }
     public bool IsReady { get => isReady; }
+    /// <summary>
+    /// ボタンが押された一瞬の状態を得る
+    /// </summary>
+    /// <returns>ボタンが押された一瞬の状態Bit</returns>
+    public uint Trigger { get => pad_trg; }
 
     /// <summary>
     /// Use this for initialization
@@ -370,15 +375,6 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
         pad_bak = tmppad;
 
         return pad;
-    }
-
-    /// <summary>
-    /// ボタンが押された一瞬の状態を得る
-    /// </summary>
-    /// <returns>ボタンが押された一瞬の状態Bit</returns>
-    public uint Trigger()
-    {
-        return pad_trg;
     }
 
 

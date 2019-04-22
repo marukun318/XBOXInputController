@@ -25,7 +25,7 @@ public class TestScript : MonoBehaviour
     {
         // Check: Be sure to call in this order
         uint pad = inputController.Poll();              // パッド入力
-        uint pad_trg = inputController.Trigger();       // パッドトリガ入力
+        uint pad_trg = inputController.Trigger;         // パッドトリガ入力
 
         // Check pad operation with pad and pad_trg values
         // Button
