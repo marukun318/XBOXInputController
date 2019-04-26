@@ -5,23 +5,12 @@
 Unity Project Template For Unity 2018  
 XBOXInputController code by Marukun.
 
+Current Unity Version: 2018.3.13f1.  
+
 Specifically, please visit here.  
 Marukun: [https://twitter.com/marukun/](https://twitter.com/marukun/)
 
 To build this project, Please use Unity 2018.3.x or later.
-
----
-
-## Update (2019/04/21)
-
-Add some properties in XBOXInputController.  
-
----
-
-## Update (2019/04/16)
-
-Fixed a bug in XBOXInputController.  
-The concrete usage example was described in TestScript.cs  
 
 ---
 

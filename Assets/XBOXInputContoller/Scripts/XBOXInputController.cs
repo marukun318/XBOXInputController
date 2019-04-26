@@ -4,28 +4,11 @@
 using System.Collections;
 using UnityEngine;
 
-internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
+internal class XBOXInputController : InputController
 {
 #if WINDOWS_UWP
     private Gamepad controller;
 #endif
-    public static readonly uint PAD_LEFT = 0x00000001;
-    public static readonly uint PAD_RIGHT = 0x00000002;
-    public static readonly uint PAD_UP = 0x00000004;
-    public static readonly uint PAD_DOWN = 0x00000008;
-    public static readonly uint PAD_BUTTON_A = 0x00000010;
-    public static readonly uint PAD_BUTTON_B = 0x00000020;
-    public static readonly uint PAD_BUTTON_X = 0x00000040;
-    public static readonly uint PAD_BUTTON_Y = 0x00000080;
-
-    public static readonly uint PAD_BUTTON_LB = 0x01000000;
-    public static readonly uint PAD_BUTTON_RB = 0x02000000;
-
-    public static readonly uint PAD_BUTTON_MENU = 0x10000000;
-    public static readonly uint PAD_BUTTON_VIEW = 0x20000000;
-
-    private const float PAD_DEAD = 0.2f;
-
     // Common
     private const string INPUT_HORIZONTAL = "Horizontal";
     private const string INPUT_VERTICAL = "Vertical";
@@ -88,9 +71,6 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     private const string INPUT_RSTICK_CLICK = "RStickClick";
 #endif
 
-    private uint pad_bak = 0;               // 以前のPad入力
-    private uint pad_trg = 0;               // トリガー
-
     /// <summary>
     /// Property
     /// </summary>
@@ -108,12 +88,6 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     public float AnalogL_V { get => analogL_V; }
     public float AnalogR_H { get => analogR_H; }
     public float AnalogR_V { get => analogR_V; }
-    public bool IsReady { get => isReady; }
-    /// <summary>
-    /// ボタンが押された一瞬の状態を得る
-    /// </summary>
-    /// <returns>ボタンが押された一瞬の状態Bit</returns>
-    public uint Trigger { get => pad_trg; }
 
     /// <summary>
     /// Use this for initialization
@@ -156,7 +130,7 @@ internal class XBOXInputController : SingletonMonoBehaviour<XBOXInputController>
     /// パッド状態を取得
     /// </summary>
     /// <returns>入力状態Bit</returns>
-    public uint Poll()
+    public override uint Poll()
     {
         uint pad = 0;
 
