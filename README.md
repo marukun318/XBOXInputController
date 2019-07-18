@@ -5,7 +5,7 @@
 Unity Project Template For Unity 2018  
 XBOXInputController code by Marukun.
 
-Current Unity Version: 2018.3.13f1.  
+Current Unity Version: 2018.4.3f1.  
 
 Specifically, please visit here.  
 Marukun: [https://twitter.com/marukun/](https://twitter.com/marukun/)
