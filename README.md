@@ -10,7 +10,7 @@ Current Unity Version: 2018.3.13f1.
 Specifically, please visit here.  
 Marukun: [https://twitter.com/marukun/](https://twitter.com/marukun/)
 
-To build this project, Please use Unity 2018.3.x or later.
+To build this project, Please use Unity 2018.4.x or later.
 
 ---
 
