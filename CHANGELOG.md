@@ -2,6 +2,11 @@
 
 # CHANGELOG
 
+## Update (2019/07/19)
+
+Migrated to Unity 2018.4 .x.
+
+---
 ## Update (2019/04/27)
 
 Changed InputController to XBOXController base class.
